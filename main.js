@@ -1,6 +1,30 @@
-import './style.css'
+import {createEvent, createStore} from 'effector';
+import {using, h, spec} from 'forest';
+import {StyledRoot, styled} from 'foliage';
 
-document.querySelector('#app').innerHTML = `
-  <h1>Hello Vite!</h1>
-  <a href="https://vitejs.dev/guide/features.html" target="_blank">Documentation</a>
-`
+const btnClicked = createEvent();
+const $state = createStore('state1').on(btnClicked, s => {
+  if (s === 'state1') return 'state2';
+  return 'state1';
+});
+
+const Wrapper = styled.div`
+  background-color: #ddd;
+
+  &.state1 {
+    color: red;
+  }
+`;
+
+const App = () => {
+  Wrapper(() => {
+    spec({attr: {class: $state}});
+    h('button', {
+      handler: {on: {click: btnClicked}},
+      text: 'btn',
+    });
+  });
+}
+
+using(document.querySelector('head'), StyledRoot);
+using(document.body, App);
