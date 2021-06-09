@@ -1,0 +1,16 @@
+{
+  "version": "0.0.0",
+  "scripts": {
+    "start": "vite",
+    "build": "vite build",
+    "serve": "vite preview"
+  },
+  "devDependencies": {
+    "vite": "^2.3.7"
+  },
+  "dependencies": {
+    "effector": "^21.8.11",
+    "foliage": "^0.106.0",
+    "forest": "^0.19.6"
+  }
+}
